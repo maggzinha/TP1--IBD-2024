@@ -4,7 +4,7 @@ from faker import Faker
 import random
 from datetime import datetime, timedelta
 
-# Configurar conexão com o banco de dados MySQL
+# conexão com o banco de dados MySQL
 db_config = {
     'host': 'localhost',
     'user': 'root',
@@ -12,7 +12,7 @@ db_config = {
     'database': 'connectme'
 }
 
-# Conexão com BD
+# conexão com BD
 mydb = pymysql.connect(
     host=db_config['host'],
     user=db_config['user'],
@@ -126,7 +126,7 @@ def Postagem(num_postagens):
         arquivo = f"arquivo_{fake.file_name()}" if tipo != 'texto' else None
         texto = fake.sentence() if tipo == 'texto' else None
         cursor.execute("SELECT email FROM Usuario")
-        usuarios = cursor.fetchall()
+        usuarios = cursor.fetchall()  # retorna todas as linhas da  consulta
         email = fake.random_element(
             elements=[usuario[0] for usuario in usuarios])
         data_hora = fake.date_this_year()
