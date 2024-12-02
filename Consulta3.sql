@@ -6,5 +6,5 @@ SELECT
     texto,  
     data_hora
 FROM postagem
-WHERE email = 'abreubenicio@example.com'
+WHERE email = 'acardoso@example.net'
 ORDER BY data_hora;
