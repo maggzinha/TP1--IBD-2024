@@ -26,9 +26,12 @@ cursor = mydb.cursor()
 fake = Faker('pt_BR')
 
 # Função para carregar dados dos arquivos .txt
+
+
 def carregar_dados_arquivo(nome_arquivo):
     with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
         return [linha.strip() for linha in arquivo.readlines()]
+
 
 # Carregar dados dos arquivos .txt
 interesses = carregar_dados_arquivo('interesses.txt')
@@ -38,12 +41,16 @@ nomes_grupos = carregar_dados_arquivo('nomes_grupos.txt')
 postagens = carregar_dados_arquivo('postagens.txt')
 descricoes_grupos = carregar_dados_arquivo('descricoes_grupos.txt')
 
-# Funções 
+# Funções utilitárias
+
+
 def data_nascimento():
     return fake.date_of_birth(minimum_age=18, maximum_age=65)
 
+
 def data_hora():
     return fake.date_time_between(start_date="-1y", end_date="now")
+
 
 def data_hora_mensagem():
     inicio = datetime.now() - timedelta(days=365)
@@ -51,15 +58,19 @@ def data_hora_mensagem():
     data_hora = fake.date_time_between(start_date=inicio, end_date=fim)
     return data_hora.strftime('%Y-%m-%d %H:%M:%S')
 
+
 def foto_perfil():
     return f"/imagem/usuario/foto_{fake.unique.random_int(min=1, max=10000)}.png"
+
 
 def foto_grupo():
     return f"/imagem/grupo/foto_{fake.unique.random_int(min=1, max=100)}.png"
 
+
 def endereco():
     endereco = fake.address()
     return endereco[:255]
+
 
 # Dados para as tabelas
 num_usuarios = 1000
@@ -68,6 +79,8 @@ num_mensagens = 2500
 num_postagens = 2500
 
 # Tabelas
+
+
 def Perfil_usuario(num_usuarios):
     for _ in range(num_usuarios):
         nome = random.choice(nome_sobrenome)
