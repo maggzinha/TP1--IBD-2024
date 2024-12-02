@@ -110,12 +110,12 @@ def Usuario(num_usuarios):
         id_grupo = fake.random_int(min=1, max=num_grupos)
         data_hora_criacaoGrupo = data_hora()
         id_mensagem = fake.random_int(min=1, max=num_mensagens)
-        data_hora_mensagem = data_hora_mensagem()
+        data_hora_mensagem_gerada = data_hora_mensagem()
         id_perfil_usuario = i + 1  # id tabela Perfil_usuario
         cursor.execute(
             "INSERT INTO Usuario (email, id_grupo, data_hora_criacaoGrupo, id_mensagem, data_hora_mensagem, id_perfil_usuario) VALUES (%s, %s, %s, %s, %s, %s)",
             (email, id_grupo, data_hora_criacaoGrupo,
-             id_mensagem, data_hora_mensagem, id_perfil_usuario)
+             id_mensagem, data_hora_mensagem_gerada, id_perfil_usuario)
         )
         mydb.commit()
 
@@ -201,11 +201,11 @@ def Chat(num_mensagens):
         email_usuario = fake.random_element(
             elements=[usuario[0] for usuario in usuarios])
         id_grupo = fake.random_int(min=1, max=num_grupos)
-        data_hora_mensagem = data_hora_mensagem()
+        data_hora_mensagem_gerada = data_hora_mensagem()
         tipo = fake.random_element(elements=('pessoal', 'grupo'))
         cursor.execute(
             "INSERT INTO Chat (id_mensagem, email_usuario, id_grupo, data_hora_mensagem, tipo) VALUES (%s, %s, %s, %s, %s)",
-            (id_mensagem, email_usuario, id_grupo, data_hora_mensagem, tipo)
+            (id_mensagem, email_usuario, id_grupo, data_hora_mensagem_gerada, tipo)
         )
         mydb.commit()
 
